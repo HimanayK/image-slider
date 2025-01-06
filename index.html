@@ -9,20 +9,27 @@
       /* FONT FAMILY  */
       --font-family: 'poppins', sans-serif;
 }
+
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
+
 html {
     font-size: 62.5%; /*  62.5% * 16px = 10px */
 }
+
 body {
+    background-color: #e3fafc;
+}
+.container {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     gap: 3rem;
     align-items: center;
-    background-color: #e3fafc;
+    justify-content: center;
 }
 
 #image-container {
@@ -30,26 +37,29 @@ body {
     margin-top: 4rem;
 
 }   
-#images {
+
+#image {
     display: block;
-    width: 70%;
-    max-height: 60rem;
-    height: 40%;
+    width: 70vw;
+    height: 65vh;
     margin: auto;
     border-radius: 1rem;
     box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 #buttons {
+    width: 32vw;
     display: flex;
-    align-items: center;
-    gap: 4rem;
+    justify-content: center;
+    gap: 7rem;
     margin-bottom: 4rem;
 
 }
+
 .btn {
     padding: 1rem 2rem;
     color: #ffff;
-    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
+    font-size: clamp(1.4rem, 0.95rem + 0.25vw, 1.25rem);
     font-weight: 600;
     background-color: #1098ad;
     border: 2px solid #1098ad;
@@ -57,54 +67,55 @@ body {
     box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
+
 .btn:hover {
     background-color: #0b7285;
 }
-@media screen and (max-width: 400px) {
+
+@media screen and (max-width: 450px) {
     #buttons {
-        min-width: 200px;
-       justify-content: center;
+        min-width: 100px;
+        gap: 2rem;
     }
-    #images {
-        width: 200px;
+
+    #image {
+        width: 20rem;
+        height: 15rem;
+    }
 
     }
-    
-}
-
-
     </style>
 </head>
 <body>
+    <div class="container">
 
-    <div id="image-container">
-        <img id="images" src="images/1.jpg" alt="image of lights" />
+        <div id="image-container">
+            <img id="image" src="images/1.jpg" alt="Image Slider"" />
+        </div>
+    
+        <div id="buttons">
+            <button onclick="previous()" class="btn" id="previous-btn">Previous</button>
+            <button onclick="next()" class="btn" id="next-btn">Next</button>
+        </div>
     </div>
-    <div id="buttons">
-        <button onclick="previous()" class="btn" id="previous-btn">Previous</button>
-        <button onclick="next()" class="btn" id="next-btn">Next</button>
-    </div>
+
+
 </body>
 <script>
-    const imagePath = ["images/1.jpg", "images/2.jpg", "images/3.jpg", "images/4.jpg", "images/5.jpg", "images/6.jpg"];
-    const image = document.getElementById("images");
-    
-    let increment = 0;
-    function checkImage() {
-        if(increment <= 0 ||increment > imagePath.length - 1) {
-            increment = 0;
-        }
+    const images = ["images/1.jpg", "images/2.jpg", "images/3.jpg", "images/4.jpg", "images/5.jpg", "images/6.jpg"];
+
+    let currentIndex = 0;
+    function updateImage() {
+        const image = document.getElementById("image");
+        image.src = images[currentIndex];
     }
     function previous() {
-        increment--;
-        checkImage()
-        image.src = imagePath[increment]
-
+       currentIndex = (currentIndex - 1 + images.length) % images.length;
+       updateImage();
     }
     function next() {
-        increment++;
-        checkImage()
-        image.src = imagePath[increment]
+        currentIndex = (currentIndex + 1) % images.length;
+        updateImage();
 
     }
 </script>
