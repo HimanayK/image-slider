@@ -8,6 +8,13 @@
         :root {
       /* FONT FAMILY  */
       --font-family: 'poppins', sans-serif;
+
+      /* box-shadow */
+      --box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+      /* Color */
+      --primary-base: #1098ad;
+      --primary-shade: #0b7285;
 }
 
 * {
@@ -44,7 +51,7 @@ body {
     height: 65vh;
     margin: auto;
     border-radius: 1rem;
-    box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: var(--box-shadow);
 }
 
 #buttons {
@@ -61,15 +68,15 @@ body {
     color: #ffff;
     font-size: clamp(1.4rem, 0.95rem + 0.25vw, 1.25rem);
     font-weight: 600;
-    background-color: #1098ad;
-    border: 2px solid #1098ad;
+    background-color: var(--primary-base);
+    border: 2px solid var(--primary-base);
     border-radius: 1rem;
-    box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: var(--box-shadow);
 
 }
 
 .btn:hover {
-    background-color: #0b7285;
+    background-color: var(--primary-shade);
 }
 
 @media screen and (max-width: 450px) {
